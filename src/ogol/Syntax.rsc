@@ -42,7 +42,7 @@ Bonus:
                                                                                                                
 start syntax Program = Command*;                                                                               
                                                                                                                
-syntax FunDef = "to" FunId VarId* Command* "end";                                                              
+syntax FunDef = "to" FunId id VarId* Command* "end";                                                              
                                                                                                                
 syntax Command                                                                                                 
   = FunDef                                                                                                     
@@ -63,24 +63,24 @@ syntax Command
   | PD:			"pd" ";"                                                                                       
   | PenUp:		"penup" ";"                                                                                    
   | PU:			"pu" ";"                                                                                       
-  | Call: 		FunId Expr* ";"                                                                                
   | SetColor:   "setcolor" Expr ";"                                                                            
+  | Call: 		FunId Expr* ";"                                                                                
   ;                                                                                                            
                                                                                                                
-syntax Block                                                                                                   
-  = "[" Command* "]";                                                                                          
+syntax Block
+  = "[" Command* commands "]";                                                                                          
                                                                                                                
 syntax Expr                                                                                                    
   = VarId                                                                                                      
   | Number                                                                                                     
   | Double                                                                                                     
   | Boolean                                                                                                    
-  | left   div: Expr l "/" Expr r                                                                              
+  | bracket "(" Expr ")"
+  > left   div: Expr l "/" Expr r                                                                              
   > left   mul: Expr l "*" Expr r                                                                              
   > left ( add: Expr l "+" Expr r                                                                              
          | sub: Expr l "-" Expr r                                                                              
-         )
-  > bracket "(" Expr ")"                                                                                                                                                                                            
+         )                                                                                                                                                                                            
   > left (                                                                                                 
   		  largerorequal: Expr l "\>=" Expr r                                                                   
   		|    largerthan: Expr l "\>"  Expr r                                                                   
