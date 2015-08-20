@@ -5,10 +5,15 @@ to squareDash :n :len
 	      	to deeplyNestedFun :n
 	      		fd :n;
 	      	end
+	      	deeplyNestedFun :len;
 	      ]
 	      bk :len;
 	      pd ;
 	   end
 	   repeat 4 [ dash :n :len; rt 90; ]
    ]
+   to hi :n
+   end
+   
+   hi :len;
 end
